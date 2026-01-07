@@ -20,6 +20,10 @@ def detector():
         result = emotion_detector(query)
     except:
         return "Emotion Detector failed..."
+    
+    if not result["dominant_emotion "]:
+        return "Invalid text! Please try again!"
+    
     try:
         output = f"""
             For the given statement, the system response is 
