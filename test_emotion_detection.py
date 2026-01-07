@@ -15,6 +15,7 @@ STATEMENTS = {
 
 class TestEmotionDetector(unittest.TestCase):
     def test_emotions(self):
+        # Test for each valid pair
         for statement, aimed_result in STATEMENTS.items():
             tested_result = emotion_detector(statement)["dominant_emotion"]
             self.assertEqual(tested_result, aimed_result)
