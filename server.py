@@ -1,8 +1,13 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 from EmotionDetection.emotion_detection import emotion_detector
 
 
 app = Flask(__name__)
+
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 
 @app.route('/emotionDetector')
@@ -30,3 +35,6 @@ def detector():
 
 
     return output
+
+if __name__ == "__main__":
+    app.run()
