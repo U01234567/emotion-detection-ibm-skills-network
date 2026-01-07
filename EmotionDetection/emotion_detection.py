@@ -33,6 +33,7 @@ def emotion_detector(text_to_analyze: str):
     """
     Input data analyzed on emotion using 
     the Emotion Predict function of the Watson NLP Library.
+    NEW: error handling
     
     :param text_to_analyze: String to perform sentiment analysis on
     :type text_to_analyze: str
@@ -52,19 +53,30 @@ def emotion_detector(text_to_analyze: str):
         json = myobj, 
         headers = header)
     
+    # Error handling
+    if response.status_code == 400:
+        return {
+            'anger': None,
+            'disgust': None,
+            'fear': None,
+            'joy': None,
+            'sadness': None,
+            'dominant_emotion': None,
+        }
+    
     # JSON API output to dict
     try:
         response_parsed = parse_result(response.text)
     except:
         print("Could not parse output to dict")
-        exit()
+        return None
 
     # Find dominant emotion
     try:
         response_final = find_dominant(response_parsed)
     except:
         print("Could not find dominant emotion")
-        exit()
+        return None
 
     return response_final or None
 

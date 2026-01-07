@@ -16,10 +16,10 @@ def detector():
         query = request.args.get("textToAnalyze")
     except:
         return "Ai, make sure you input text to analyze..."
-    try:
-        result = emotion_detector(query)
-    except:
-        return "Emotion Detector failed..."
+    
+    result = emotion_detector(query)
+    if not result or result["dominant_emotion"] is None:
+        return "Invalid text! Please try again!"
     
     if not result["dominant_emotion "]:
         return "Invalid text! Please try again!"
