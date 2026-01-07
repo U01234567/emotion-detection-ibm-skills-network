@@ -28,13 +28,15 @@ def detector():
             'fear': {result["fear"]}, 
             'joy': {result["joy"]} 
             and 'sadness': {result["sadness"]}. 
-            The dominant emotion is {result["dominant_emotion"]}.
+            The dominant emotion is <strong>{result["dominant_emotion"]}</strong>.
         """
     except:
         return "Emotion Detector worked, but could not provide the correct format..."
 
-
     return output
 
 if __name__ == "__main__":
-    app.run()
+    app.run(
+        host = "0.0.0.0", 
+        port = 5000
+    )
