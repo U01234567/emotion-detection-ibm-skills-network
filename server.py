@@ -20,8 +20,6 @@ def detector():
     result = emotion_detector(query)
     if not result or result["dominant_emotion"] is None:
         return "Invalid text! Please try again!"
-    if not result["dominant_emotion "]:
-        return "Invalid text! Please try again!"
     try:
         output = f"""
             For the given statement, the system response is 
